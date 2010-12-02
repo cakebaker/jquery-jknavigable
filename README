@@ -1,0 +1,5 @@
+A simple jQuery plugin allowing you to navigate using the "j" and "k" keys like on http://www.boston.com/bigpicture/.
+
+Example for enabling j/k navigation for posts on a blog:
+
+$('.post').jknavigable();
