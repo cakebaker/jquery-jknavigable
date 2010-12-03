@@ -35,7 +35,6 @@
             }
 
             var currentElement = elements.eq(currentElementIndex);
-            var position = currentElement.offset().top;
             currentElement.addClass(settings['activeClass']);
 
             if (previousElementIndex != null) {
@@ -43,6 +42,7 @@
                 previousElement.removeClass(settings['activeClass']);
             }
 
+            var position = currentElement.offset().top;
             $(document).scrollTop(position);
         });
 
