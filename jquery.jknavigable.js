@@ -1,9 +1,15 @@
 /* Licensed under the MIT license by Daniel Hofstetter (http://cakebaker.42dh.com) */
 (function($) {
-    $.fn.jknavigable = function() {
+    $.fn.jknavigable = function(options) {
         var J_KEY = 106, K_KEY = 107;
+        var settings = { 'activeClass': 'active' }
         var elements = this;
         var currentElementIndex = null;
+        var previousElementIndex = null;
+
+        if (options) {
+            $.extend(settings, options);
+        }
 
         $(document).keypress(function(event) {
             var pressed_key = event.which;
@@ -13,6 +19,7 @@
                             if (currentElementIndex == null) {
                                 currentElementIndex = 0;
                             } else if (!(currentElementIndex == elements.length - 1)) {
+                                previousElementIndex = currentElementIndex;
                                 currentElementIndex++;
                             }
                             break;
@@ -20,6 +27,7 @@
                             if (currentElementIndex == null) {
                                 return;
                             } else if (!(currentElementIndex == 0)) {
+                                previousElementIndex = currentElementIndex;
                                 currentElementIndex--;
                             }
                             break;
@@ -28,6 +36,12 @@
 
             var currentElement = elements.eq(currentElementIndex);
             var position = currentElement.offset().top;
+            currentElement.addClass(settings['activeClass']);
+
+            if (previousElementIndex != null) {
+                var previousElement = elements.eq(previousElementIndex);
+                previousElement.removeClass(settings['activeClass']);
+            }
 
             $(document).scrollTop(position);
         });

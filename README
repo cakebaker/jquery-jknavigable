@@ -3,3 +3,7 @@ A simple jQuery plugin allowing you to navigate using the "j" and "k" keys like 
 Example for enabling j/k navigation for posts on a blog:
 
 $('.post').jknavigable();
+
+By default the class "active" is added to the active element, though this can be changed with:
+
+$('.post').jknavigable({'activeClass': 'someClass'});
